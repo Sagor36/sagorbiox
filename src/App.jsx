@@ -167,7 +167,7 @@ function Layout() {
             <InfoItem label="Hobbies" value="Learning, Traveling" />
           </div>
           <button className="w-full flex items-center justify-center gap-3 py-6 bg-[#1a1c23] border-t border-white/5 font-black uppercase italic tracking-widest hover:bg-[#5a3bff] transition-all group">
-              Download <span className="text-[#d4af37] group-hover:text-white">Resume</span> <FaDownload className="text-sm"/>
+             Download <span className="text-[#d4af37] group-hover:text-white">Resume</span> <FaDownload className="text-sm"/>
           </button>
         </div>
       </section>
@@ -185,7 +185,7 @@ function Layout() {
         </div>
       </section>
 
-      {/* 6. SKILLS SECTION (FIXED ERROR) */}
+      {/* 6. SKILLS SECTION */}
       <section className="py-20 px-6 md:px-[12%]">
         <h2 className="text-4xl md:text-5xl font-black mb-16 italic text-[#d4af37] uppercase tracking-tighter text-center">Master <span className="text-white">Skills</span></h2>
         <div className="max-w-5xl mx-auto relative p-10 md:p-16 bg-[#111318] rounded-[3rem] border border-white/5">
@@ -216,7 +216,7 @@ function Layout() {
         </div>
       </section>
 
-      {/* 8. CONTACT SECTION */}
+      {/* 8. CONTACT SECTION (100% WORKING WITH YOUR ID) */}
       <section ref={contactRef} className="py-32 px-6 md:px-[12%]">
         <div className="max-w-6xl mx-auto bg-[#161a20] p-10 md:p-24 rounded-[4rem] border border-white/5 grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
@@ -228,20 +228,47 @@ function Layout() {
                <ContactInfo icon={<MdLocationOn/>} value="Dhaka, Bangladesh" />
             </div>
           </div>
-          <form className="space-y-4">
-            <input className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all" placeholder="Full Name" />
-            <input className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all" placeholder="Email Address" />
-            <textarea className="w-full p-6 rounded-2xl bg-black border border-white/5 h-40 outline-none focus:border-[#5a3bff] transition-all" placeholder="Your Project Ideas"></textarea>
-            <button className="w-full bg-[#d4af37] text-black py-6 rounded-2xl font-black uppercase text-xl shadow-2xl hover:bg-[#5a3bff] hover:text-white transition-all">Send Message</button>
+          
+          {/* YOUR WORKING FORMSPREE ACTION ADDED HERE */}
+          <form action="https://formspree.io/f/xykezayg" method="POST" className="space-y-4">
+            <input 
+              name="full_name"
+              type="text"
+              required
+              className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
+              placeholder="Full Name" 
+            />
+            <input 
+              name="email"
+              type="email"
+              required
+              className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
+              placeholder="Email Address" 
+            />
+            <textarea 
+              name="message"
+              required
+              className="w-full p-6 rounded-2xl bg-black border border-white/5 h-40 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
+              placeholder="Your Project Ideas"
+            ></textarea>
+            
+            {/* Honeypot for Spam protection */}
+            <input type="hidden" name="_subject" value="New Message from Portfolio!" />
+            
+            <button 
+              type="submit"
+              className="w-full bg-[#d4af37] text-black py-6 rounded-2xl font-black uppercase text-xl shadow-2xl hover:bg-[#5a3bff] hover:text-white transition-all"
+            >
+              Send Message
+            </button>
           </form>
         </div>
       </section>
 
-      {/* 9. MAIN FOOTER (FIXED AS PER IMAGE CC3666) */}
+      {/* 9. MAIN FOOTER */}
       <footer className="bg-[#f0f4f8] text-black py-20 px-6 md:px-[12%] mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           
-          {/* Logo & Bio */}
           <div className="space-y-6">
             <div className="text-3xl font-black tracking-tighter italic flex items-center gap-2">
               <span className="text-[#5a3bff] border-l-4 border-[#5a3bff] pl-2">SAGOR</span> AHMED
@@ -249,7 +276,6 @@ function Layout() {
             <p className="text-sm opacity-70 leading-relaxed font-medium">
               By optimizing content, leveraging relevant keywords, and adhering to SEO best practices, businesses can secure a prominent position in search engine results.
             </p>
-            {/* Social Icons - Boro ebong Black */}
             <div className="flex gap-3">
               <FooterSocialIcon href="https://facebook.com/bdsagordm" icon={<FaFacebookF/>} />
               <FooterSocialIcon href="https://instagram.com/bdsagordm" icon={<FaInstagram/>} />
@@ -258,7 +284,6 @@ function Layout() {
             </div>
           </div>
 
-          {/* Links */}
           <div>
             <h3 className="text-xl font-black mb-8 uppercase italic">About Us</h3>
             <ul className="space-y-4 font-bold opacity-60 text-sm">
@@ -269,7 +294,6 @@ function Layout() {
             </ul>
           </div>
 
-          {/* Contact Details (Updated) */}
           <div>
             <h3 className="text-xl font-black mb-8 uppercase italic">Get in touch</h3>
             <div className="space-y-5">
@@ -279,7 +303,6 @@ function Layout() {
             </div>
           </div>
 
-          {/* Newsletter Section (New Design) */}
           <div>
             <h3 className="text-xl font-black mb-8 uppercase italic">Subscribe Our Newsletter</h3>
             <div className="flex bg-[#e0e7ff] p-2 rounded-full border border-[#5a3bff]/10 max-w-[300px]">
@@ -335,7 +358,6 @@ function InfoItem({ label, value }) {
   );
 }
 
-// FIXED SKILLBAR COMPONENT
 function SkillBar({ label, percent }) {
   return (
     <div>
@@ -344,7 +366,6 @@ function SkillBar({ label, percent }) {
         <span>{percent}</span>
       </div>
       <div className="w-full h-[6px] bg-white/5 rounded-full overflow-hidden">
-        {/* Style fixed with double curly braces */}
         <motion.div 
             initial={{ width: 0 }} 
             whileInView={{ width: percent }} 
@@ -388,7 +409,6 @@ function ContactInfo({ icon, value }) {
   );
 }
 
-// Updated Social Icon for Footer
 function FooterSocialIcon({ href, icon }) {
   return (
     <a href={href} className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-xl hover:bg-[#5a3bff] transition-all">
