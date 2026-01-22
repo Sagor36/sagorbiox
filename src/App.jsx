@@ -9,10 +9,14 @@ import { MdEmail, MdClose, MdNotificationsActive, MdLocationOn, MdPhone } from "
 import { HiMenuAlt2 } from "react-icons/hi"; 
 import { FiArrowUpRight } from "react-icons/fi";
 
-// Assets
+// Assets - নিশ্চিত করুন assets ফোল্ডারে এই নামে ফাইলগুলো আছে
 import image from "./assets/sagor.png";
-import img1 from "./assets/1.png";
-import img2 from "./assets/2.jpg";
+import p1 from "./assets/p1.png"; 
+import p2 from "./assets/p2.png";
+import p3 from "./assets/p3.png";
+import p4 from "./assets/p4.png";
+import p5 from "./assets/p5.png";
+import p6 from "./assets/p6.png";
 
 export default function App() {
   return (
@@ -36,11 +40,16 @@ function Layout() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const safetyTimer = setTimeout(() => setLoading(false), 4000);
     const timer = setTimeout(() => {
       setLoading(false);
       setTimeout(() => setShowWelcomeMsg(true), 1200);
     }, 1500);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(safetyTimer);
+    };
   }, []);
 
   const scrollToSection = (ref) => {
@@ -58,7 +67,7 @@ function Layout() {
       <div className="min-h-screen flex items-center justify-center bg-[#0a0c10]">
         <div className="text-center">
           <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1 }} className="w-16 h-16 border-4 border-[#5a3bff] border-t-transparent rounded-full mx-auto mb-4" />
-          <TypeAnimation sequence={["SAGOR AHMED BIO...", 1000]} speed={50} className="text-xl font-black text-white italic" />
+          <p className="text-white font-black italic tracking-widest animate-pulse">SAGOR AHMED BIO...</p>
         </div>
       </div>
     );
@@ -85,7 +94,7 @@ function Layout() {
         )}
       </AnimatePresence>
 
-      {/* 2. SIDEBAR HEADER */}
+      {/* 2. HEADER/MENU */}
       <header className="fixed top-0 left-0 w-full z-[100] px-6 py-6 flex justify-between items-center pointer-events-none">
         <button onClick={() => setMenuOpen(true)} className="pointer-events-auto text-4xl text-white bg-black/40 p-2 rounded-xl backdrop-blur-md border border-white/5 hover:text-[#5a3bff] transition-all shadow-xl">
           <HiMenuAlt2 />
@@ -113,9 +122,9 @@ function Layout() {
               <div className="mt-10 border-t pt-10 text-center">
                  <p className="font-bold opacity-60 mb-4">+880 1318 102806</p>
                  <div className="flex justify-center gap-4 text-2xl">
-                    <a href="https://facebook.com/bdsagordm" className="hover:text-[#5a3bff]"><FaFacebookF/></a>
-                    <a href="https://linkedin.com/in/bdsagordm" className="hover:text-[#5a3bff]"><FaLinkedinIn/></a>
-                    <a href="https://youtube.com/@bdsagordm" className="hover:text-[#5a3bff]"><FaYoutube/></a>
+                    <a href="https://facebook.com/bdsagordm" className="hover:text-[#5a3bff] transition-colors"><FaFacebookF/></a>
+                    <a href="https://linkedin.com/in/bdsagordm" className="hover:text-[#5a3bff] transition-colors"><FaLinkedinIn/></a>
+                    <a href="https://youtube.com/@bdsagordm" className="hover:text-[#5a3bff] transition-colors"><FaYoutube/></a>
                  </div>
               </div>
             </motion.div>
@@ -172,7 +181,7 @@ function Layout() {
         </div>
       </section>
 
-      {/* 5. EXPERIENCE SECTION */}
+      {/* 5. EXPERIENCE & EDUCATION (RE-ADDED) */}
       <section className="py-20 px-6 md:px-[12%] bg-[#0a0c10]">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center text-4xl font-black italic mb-16 uppercase text-[#d4af37]">Experience & <span className="text-white">Education</span></h2>
@@ -189,9 +198,6 @@ function Layout() {
       <section className="py-20 px-6 md:px-[12%]">
         <h2 className="text-4xl md:text-5xl font-black mb-16 italic text-[#d4af37] uppercase tracking-tighter text-center">Master <span className="text-white">Skills</span></h2>
         <div className="max-w-5xl mx-auto relative p-10 md:p-16 bg-[#111318] rounded-[3rem] border border-white/5">
-          <div className="absolute inset-0 border-2 border-[#d4af37]/20 rounded-[3rem]"></div>
-          <motion.div animate={{ rotate: 360 }} transition={{ duration: 10, repeat: Infinity, ease: "linear" }} className="absolute -inset-[2px] border-[2px] border-t-[#d4af37] border-l-transparent border-r-transparent border-b-transparent rounded-[3rem] opacity-40 pointer-events-none" />
-          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-10">
             <SkillBar label="SEO Specialist" percent="96%" />
             <SkillBar label="YouTube Optimizing" percent="92%" />
@@ -203,20 +209,20 @@ function Layout() {
         </div>
       </section>
 
-      {/* 7. PORTFOLIO */}
+      {/* 7. PORTFOLIO - Adjusted with your Screenshot sizes */}
       <section ref={workRef} className="py-32 px-6 md:px-[12%] bg-[#0f1115]">
         <h2 className="text-5xl md:text-7xl font-black text-center mb-20 italic uppercase tracking-tighter">My <span className="text-[#5a3bff]">Works</span></h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <WorkCard img={img1} title="YouTube Growth Case" cat="SEO" />
-          <WorkCard img={img2} title="Meta Ads ROI Strategy" cat="Ads" />
-          <WorkCard img={img1} title="Global SEO Audit" cat="Analytics" />
-          <WorkCard img={img2} title="Ad Funnel Design" cat="Marketing" />
-          <WorkCard img={img1} title="Organic Video SEO" cat="YouTube" />
-          <WorkCard img={img2} title="Sales Conversion" cat="Strategy" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <WorkCard img={p1} title="Pastor Chuck Live" cat="Optimization" />
+          <WorkCard img={p2} title="Video Engagement Hub" cat="Marketing" />
+          <WorkCard img={p3} title="Actionable SEO Report" cat="Analytics" />
+          <WorkCard img={p4} title="Video Detail Setup" cat="SEO" />
+          <WorkCard img={p5} title="Backend Metadata" cat="Technical" />
+          <WorkCard img={p6} title="Ad Results View" cat="Ads" />
         </div>
       </section>
 
-      {/* 8. CONTACT SECTION (100% WORKING WITH YOUR ID) */}
+      {/* 8. CONTACT SECTION - 100% Working with ID: xykezayg */}
       <section ref={contactRef} className="py-32 px-6 md:px-[12%]">
         <div className="max-w-6xl mx-auto bg-[#161a20] p-10 md:p-24 rounded-[4rem] border border-white/5 grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
@@ -229,102 +235,49 @@ function Layout() {
             </div>
           </div>
           
-          {/* YOUR WORKING FORMSPREE ACTION ADDED HERE */}
           <form action="https://formspree.io/f/xykezayg" method="POST" className="space-y-4">
-            <input 
-              name="full_name"
-              type="text"
-              required
-              className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
-              placeholder="Full Name" 
-            />
-            <input 
-              name="email"
-              type="email"
-              required
-              className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
-              placeholder="Email Address" 
-            />
-            <textarea 
-              name="message"
-              required
-              className="w-full p-6 rounded-2xl bg-black border border-white/5 h-40 outline-none focus:border-[#5a3bff] transition-all text-white placeholder:opacity-30" 
-              placeholder="Your Project Ideas"
-            ></textarea>
-            
-            {/* Honeypot for Spam protection */}
-            <input type="hidden" name="_subject" value="New Message from Portfolio!" />
-            
-            <button 
-              type="submit"
-              className="w-full bg-[#d4af37] text-black py-6 rounded-2xl font-black uppercase text-xl shadow-2xl hover:bg-[#5a3bff] hover:text-white transition-all"
-            >
-              Send Message
-            </button>
+            <input name="name" type="text" required className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#d4af37] transition-all text-white" placeholder="Full Name" />
+            <input name="email" type="email" required className="w-full p-6 rounded-2xl bg-black border border-white/5 outline-none focus:border-[#d4af37] transition-all text-white" placeholder="Email Address" />
+            <textarea name="message" required className="w-full p-6 rounded-2xl bg-black border border-white/5 h-40 outline-none focus:border-[#d4af37] transition-all text-white" placeholder="Your Project Ideas"></textarea>
+            <button type="submit" className="w-full bg-[#d4af37] text-black py-6 rounded-2xl font-black uppercase text-xl shadow-2xl hover:bg-[#5a3bff] hover:text-white transition-all">Send Message</button>
           </form>
         </div>
       </section>
 
-      {/* 9. MAIN FOOTER */}
-      <footer className="bg-[#f0f4f8] text-black py-20 px-6 md:px-[12%] mt-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          
+      {/* 9. FOOTER */}
+      <footer className="bg-[#f0f4f8] text-black py-20 px-6 md:px-[12%]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
           <div className="space-y-6">
-            <div className="text-3xl font-black tracking-tighter italic flex items-center gap-2">
-              <span className="text-[#5a3bff] border-l-4 border-[#5a3bff] pl-2">SAGOR</span> AHMED
-            </div>
-            <p className="text-sm opacity-70 leading-relaxed font-medium">
-              By optimizing content, leveraging relevant keywords, and adhering to SEO best practices, businesses can secure a prominent position in search engine results.
-            </p>
-            <div className="flex gap-3">
+            <div className="text-3xl font-black tracking-tighter italic"><span className="text-[#5a3bff]">SAGOR</span> AHMED</div>
+            <p className="text-xs font-bold opacity-60">Delivering growth through precision SEO and targeted ad campaigns.</p>
+            <div className="flex justify-center md:justify-start gap-3">
               <FooterSocialIcon href="https://facebook.com/bdsagordm" icon={<FaFacebookF/>} />
-              <FooterSocialIcon href="https://instagram.com/bdsagordm" icon={<FaInstagram/>} />
               <FooterSocialIcon href="https://linkedin.com/in/bdsagordm" icon={<FaLinkedinIn/>} />
               <FooterSocialIcon href="https://youtube.com/@bdsagordm" icon={<FaYoutube/>} />
             </div>
           </div>
-
           <div>
-            <h3 className="text-xl font-black mb-8 uppercase italic">About Us</h3>
-            <ul className="space-y-4 font-bold opacity-60 text-sm">
-              <li className="hover:text-[#5a3bff] cursor-pointer">Our Blog</li>
-              <li className="hover:text-[#5a3bff] cursor-pointer" onClick={() => scrollToSection(aboutRef)}>About Us</li>
-              <li className="hover:text-[#5a3bff] cursor-pointer" onClick={() => scrollToSection(workRef)}>Services</li>
-              <li className="hover:text-[#5a3bff] cursor-pointer" onClick={() => scrollToSection(contactRef)}>Contact Us</li>
+            <h3 className="text-xl font-black mb-8 uppercase italic">Quick Links</h3>
+            <ul className="space-y-3 font-bold opacity-70 text-sm">
+              <li className="cursor-pointer hover:text-[#5a3bff]" onClick={() => scrollToSection(aboutRef)}>About</li>
+              <li className="cursor-pointer hover:text-[#5a3bff]" onClick={() => scrollToSection(workRef)}>Works</li>
+              <li className="cursor-pointer hover:text-[#5a3bff]" onClick={() => scrollToSection(contactRef)}>Contact</li>
             </ul>
           </div>
-
           <div>
-            <h3 className="text-xl font-black mb-8 uppercase italic">Get in touch</h3>
-            <div className="space-y-5">
-              <FooterContactItem icon={<MdEmail/>} text="bdsagordm@gmail.com" />
-              <FooterContactItem icon={<MdPhone/>} text="+8801318102806" />
-              <FooterContactItem icon={<MdLocationOn/>} text="Dhaka, Bangladesh" />
-            </div>
+            <h3 className="text-xl font-black mb-8 uppercase italic">Contact</h3>
+            <p className="text-xs font-bold opacity-60 leading-loose">bdsagordm@gmail.com<br/>+880 1318 102806<br/>Dhaka, Bangladesh</p>
           </div>
-
           <div>
-            <h3 className="text-xl font-black mb-8 uppercase italic">Subscribe Our Newsletter</h3>
-            <div className="flex bg-[#e0e7ff] p-2 rounded-full border border-[#5a3bff]/10 max-w-[300px]">
-              <input 
-                type="email" 
-                placeholder="Enter Your email" 
-                className="bg-transparent border-none outline-none px-4 py-2 w-full text-sm font-medium"
-              />
-              <button className="bg-[#5a3bff] text-white p-3 rounded-full hover:scale-105 transition-all flex items-center justify-center">
-                <span className="text-xs font-bold mr-1">Subscribe</span>
-                <FiArrowUpRight />
-              </button>
+            <h3 className="text-xl font-black mb-8 uppercase italic">Updates</h3>
+            <div className="bg-black/5 p-2 rounded-full flex border border-black/5">
+               <input type="text" placeholder="Email" className="bg-transparent border-none outline-none px-4 w-full text-xs font-bold" />
+               <button className="bg-[#5a3bff] text-white p-3 rounded-full hover:scale-105 transition-transform"><FiArrowUpRight/></button>
             </div>
           </div>
         </div>
-
-        <div className="mt-20 pt-8 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[12px] font-bold opacity-50 uppercase tracking-widest">
-          <p>©Copyright 2024 bdsagordm.com . All rights reserved</p>
-          <div className="flex gap-8">
-            <span className="hover:text-black cursor-pointer">Terms & Conditions</span>
-            <span className="hover:text-black cursor-pointer">Privacy Policy</span>
-          </div>
+        <div className="mt-20 border-t border-black/5 pt-8 text-center text-[10px] font-bold opacity-40 uppercase tracking-widest">
+           © 2026 SAGOR AHMED. ALL RIGHTS RESERVED.
         </div>
       </footer>
 
@@ -342,11 +295,7 @@ function Layout() {
 
 // HELPER COMPONENTS
 function SidebarLink({ label, onClick }) {
-  return (
-    <motion.div whileHover={{ x: 10 }} onClick={onClick} className="text-2xl font-black uppercase tracking-tight cursor-pointer hover:text-[#5a3bff] transition-all">
-      {label}
-    </motion.div>
-  );
+  return <div onClick={onClick} className="text-2xl font-black uppercase tracking-tight cursor-pointer hover:text-[#5a3bff] transition-all">{label}</div>;
 }
 
 function InfoItem({ label, value }) {
@@ -361,18 +310,12 @@ function InfoItem({ label, value }) {
 function SkillBar({ label, percent }) {
   return (
     <div>
-      <div className="flex justify-between mb-4 font-black uppercase text-[10px] tracking-widest opacity-70 italic">
+      <div className="flex justify-between mb-2 font-black uppercase text-[10px] tracking-widest opacity-70 italic">
         <span>{label}</span>
         <span>{percent}</span>
       </div>
       <div className="w-full h-[6px] bg-white/5 rounded-full overflow-hidden">
-        <motion.div 
-            initial={{ width: 0 }} 
-            whileInView={{ width: percent }} 
-            transition={{ duration: 2 }} 
-            style={{ width: percent }}
-            className="h-full bg-gradient-to-r from-[#d4af37] to-[#5a3bff]" 
-        />
+        <motion.div initial={{ width: 0 }} whileInView={{ width: percent }} transition={{ duration: 1.5 }} style={{ width: percent }} className="h-full bg-gradient-to-r from-[#d4af37] to-[#5a3bff]" />
       </div>
     </div>
   );
@@ -380,8 +323,8 @@ function SkillBar({ label, percent }) {
 
 function ExpCard({ date, title, company, desc }) {
   return (
-    <div className="bg-[#111318] p-8 rounded-[2rem] border border-white/5 hover:border-[#d4af37] transition-all">
-       <span className="inline-block px-4 py-1 bg-white/5 rounded-full text-[10px] font-black mb-4">{date}</span>
+    <div className="bg-[#111318] p-8 rounded-[2rem] border border-white/5 hover:border-[#d4af37] transition-all group">
+       <span className="inline-block px-4 py-1 bg-white/5 rounded-full text-[10px] font-black mb-4 group-hover:bg-[#d4af37] group-hover:text-black transition-colors">{date}</span>
        <h3 className="text-xl font-black italic text-white uppercase">{title} - <span className="text-[#d4af37]">{company}</span></h3>
        <p className="mt-3 opacity-40 text-sm font-bold leading-relaxed">{desc}</p>
     </div>
@@ -390,11 +333,11 @@ function ExpCard({ date, title, company, desc }) {
 
 function WorkCard({ img, title, cat }) {
   return (
-    <div className="group relative rounded-[3rem] overflow-hidden h-80 border border-white/5">
-      <img src={img} className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700" alt={title} />
-      <div className="absolute inset-0 bg-black/80 opacity-0 group-hover:opacity-100 transition-all flex flex-col justify-center items-center p-8 text-center">
-        <p className="text-[#5a3bff] text-xs font-black uppercase tracking-widest mb-3">{cat}</p>
-        <h4 className="text-2xl font-black italic">{title}</h4>
+    <div className="group relative rounded-[2rem] overflow-hidden border border-white/5 aspect-video shadow-2xl">
+      <img src={img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={title} />
+      <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center p-6 text-center backdrop-blur-sm">
+        <span className="text-[#d4af37] text-[10px] font-black uppercase tracking-widest mb-2">{cat}</span>
+        <h4 className="text-xl font-black italic">{title}</h4>
       </div>
     </div>
   );
@@ -404,24 +347,15 @@ function ContactInfo({ icon, value }) {
   return (
     <div className="flex items-center gap-5">
       <div className="p-4 bg-black border border-white/5 rounded-2xl text-[#d4af37] text-2xl">{icon}</div>
-      <p className="font-black italic text-lg">{value}</p>
+      <p className="font-black italic text-md">{value}</p>
     </div>
   );
 }
 
 function FooterSocialIcon({ href, icon }) {
   return (
-    <a href={href} className="w-12 h-12 bg-black text-white rounded-full flex items-center justify-center text-xl hover:bg-[#5a3bff] transition-all">
+    <a href={href} className="w-10 h-10 bg-black/5 rounded-full flex items-center justify-center hover:bg-[#5a3bff] hover:text-white transition-all">
       {icon}
     </a>
-  );
-}
-
-function FooterContactItem({ icon, text }) {
-  return (
-    <div className="flex items-start gap-4">
-      <span className="text-xl text-black mt-1">{icon}</span>
-      <span className="text-sm font-bold opacity-70">{text}</span>
-    </div>
   );
 }
